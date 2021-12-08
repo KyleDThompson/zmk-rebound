@@ -13,5 +13,5 @@
 #
 ---
 include:
-  - board: nice_nano
+  - board: nice_nanobluemicro840_v1
     shield: rebound_v4
