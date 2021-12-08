@@ -11,7 +11,7 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-/ {
+ {
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -46,8 +46,7 @@
  
 
                         >;
-  // Encoder Bindings
-			sensor-bindings = <&inc_dec_kp DEL BSPC>;
+
                 };
 
         LOWER {
@@ -63,8 +62,7 @@
   &kp SHIFT	&kp F7	&kp F8	&kp F9	&kp F10	&kp F11		&kp RET		&kp F12	  &NONE  	&kp COMMA &kp DOT &kp FSLH &kp RET
   &kp LCTRL	&kp LALT &kp LGUI &none	&mo 1	&kp SPACE	&kp CLCK	&kp SPACE &mo 2 &kp LEFT &kp DOWN &kp UP &KP RIGHT
                         >;
-  // Encoder Bindings
-			sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+
                 };
 
         RAISE {
@@ -80,8 +78,7 @@
   &kp SHIFT	&kp F7	&kp F8	&kp F9	&kp F10	&kp F11		&kp RET		&kp F12	  &NONE  	&kp COMMA &kp DOT &kp FSLH &kp RET
   &kp LCTRL	&kp LALT &kp LGUI &none	&mo 1	&kp SPACE	&kp CLCK	&kp SPACE &mo 2 &kp LEFT &kp DOWN &kp UP &kp RIGHT
                         >;
-  // Encoder Bindings
-			sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+
                 };
 
         NUMPAD {
@@ -97,8 +94,7 @@
    &bt BT_CLR &none   &none    &none    &none     &none                   &none    &kp ASTRK &kp N1    &kp N2     &kp N3    &kp EQUAL &none
    &none     &none    &none    &tog 3   &none     &none                   &none    &kp BSPC  &kp N0    &kp N0     &KP DOT   &kp RET   &none
                         >;
-  //Encoder Bindings
-			sensor-bindings = <&inc_dec_kp RIGHT LEFT>;
+
                 };
 	};
 };
