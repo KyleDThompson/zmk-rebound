@@ -1,0 +1,104 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/modifiers.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
+
+/ {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_MODS";
+            #binding-cells = <2>;
+            tapping_term_ms = <175>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+		#define DEFAULT	0
+		#define LOWER	1
+		#define RAISE	2
+		#define NUMPAD	3
+
+        DEFAULT {
+// ----------------------------------------------------------------------------------------
+// |  ESC  |  Q  |  W  |  E  |  R  |  T  |          |  Y  |  U  |  I  |  O  |  P  |  BSPC |
+// |  TAB  |  A  |  S  |  D  |  F  |  G  | | POWER| |  H  |  J  |  K  |  L  |  ;  |   '   |
+// | SHIFT |  Z  |  X  |  C  |  V  |  B  | | RET  | |  N  |  M  |  ,  |  .  |  /  |  RET  |
+// | CTRL  | ALT | GUI | NUM | LWR | SPC | | CAPS | | SPC | UPR |LEFT |DOWN |  UP | RIGHT |
+// ----------------------------------------------------------------------------------------                         					  
+		bindings = <
+  &kp ESC	&kp Q	&kp W	&kp E	&kp R	&kp T					&kp Y	&kp U 	&kp I 	&kp O 	&kp P 	&KP BSPC
+  &kp TAB	&kp A	&kp S	&kp D	&kp F	&kp G &ext_power EP_TOG	&kp H	&kp J 	&kp K 	&kp L 	&kp SEMI &KP APOS
+  &kp SHIFT	&kp Z	&kp x	&kp C	&kp V	&kp B		&kp RET		&kp N	&kp M 	&kp COMMA &kp DOT &kp FSLH &KP RET
+  &kp LCTRL	&kp LALT &kp LGUI &tog 3 &mo 1	&kp SPACE	&kp CLCK	&kp SPACE &mo 2 &kp LEFT &kp DOWN &kp UP &KP RIGHT
+ 
+
+                        >;
+  // Encoder Bindings
+			sensor-bindings = <&inc_dec_kp DEL BSPC>;
+                };
+
+        LOWER {
+// ----------------------------------------------------------------------------------------
+// |   ~   |  !  |  @  |  #  |  $  |  %  |          |  ^  |  &  |  *  |  (  |  )  |  BSPC |
+// |  TAB  |  F1 |  F2 |  F3 |  F4 |  F5 | | POWER| |  F6 |  _  |  +  |  {  |  }  |   |   |
+// | SHIFT |  F7 |  F8 |  F9 | F10 | F11 | | RET  | | F12 |     |  ,  |  .  |  /  |  RET  |
+// | CTRL  | ALT | GUI |     | LWR | SPC | | CAPS | | SPC | UPR |LEFT |DOWN |  UP | RIGHT |
+// ---------------------------------------------------------------------------------------- 
+		bindings = < 
+  &kp TILDE	&kp EXCL &kp AT	&kp HASH &kp DLLR &kp PRCNT				&kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
+  &kp TAB	&kp F1	&kp F2	&kp F3	&kp F4  &kp F5 &ext_power EP_TOG &kp F6   &kp UNDER &kp PLUS &kp LBRC &kp RBRC &kp PIPE
+  &kp SHIFT	&kp F7	&kp F8	&kp F9	&kp F10	&kp F11		&kp RET		&kp F12	  &NONE  	&kp COMMA &kp DOT &kp FSLH &kp RET
+  &kp LCTRL	&kp LALT &kp LGUI &none	&mo 1	&kp SPACE	&kp CLCK	&kp SPACE &mo 2 &kp LEFT &kp DOWN &kp UP &KP RIGHT
+                        >;
+  // Encoder Bindings
+			sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+                };
+
+        RAISE {
+// ----------------------------------------------------------------------------------------
+// |   `   |  1  |  2  |  3  |  4  |  5  |          |  6  |  7  |  8  |  9  |  0  |  BSPC |
+// |  TAB  |  F1 |  F2 |  F3 |  F4 |  F5 | | POWER| |  F6 |  -  |  =  |  [  |  ]  |   \   |
+// | SHIFT |  F7 |  F8 |  F9 | F10 | F11 | | RET  | | F12 |     |  ,  |  .  |  /  |  RET  |
+// | CTRL  | ALT | GUI |     | LWR | SPC | | CAPS | | SPC | UPR |LEFT |DOWN |  UP | RIGHT |
+// ---------------------------------------------------------------------------------------- 
+		bindings = < 
+  &kp GRAVE	&kp N1	 &kp N2	&kp N3 	&kp N4 	&kp N5					&kp N6 	&kp N7 	&kp N8 	&kp N9 	&kp N0 	&kp BSPC
+  &kp TAB	&kp F1	&kp F2	&kp F3	&kp F4  &kp F5 &ext_power EP_TOG &kp F6   &kp MINUS &kp EQUAL	&kp LBKT &kp RBKT &kp PIPE
+  &kp SHIFT	&kp F7	&kp F8	&kp F9	&kp F10	&kp F11		&kp RET		&kp F12	  &NONE  	&kp COMMA &kp DOT &kp FSLH &kp RET
+  &kp LCTRL	&kp LALT &kp LGUI &none	&mo 1	&kp SPACE	&kp CLCK	&kp SPACE &mo 2 &kp LEFT &kp DOWN &kp UP &kp RIGHT
+                        >;
+  // Encoder Bindings
+			sensor-bindings = <&inc_dec_kp PG_DN PG_UP>;
+                };
+
+        NUMPAD {
+// -----------------------------------------------------------------------------------------
+// | RST |FLRST|     |     |     |     |           |     | NUM |  7  |  8  |  9  |  -  |
+// |     |     |     |     |     |     | |       | |     |  /  |  4  |  5  |  6  |  +  |
+// |     |     |     |     |     |     | |       | |     |  *  |  1  |  2  |  3  |  =  |
+// |     |     |     | NUM |     |     | |       | |     | BSPC|  0  |  0  |  .  | RET | 
+//                                            
+		bindings = <
+   &reset &bootloader &none    &none    &none     &none                            &tog 3    &kp N7    &kp N8     &kp N9    &kp MINUS &none   
+   &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 &none &none    &kp FSLH  &kp N4    &kp N5     &kp N6    &kp PLUS  &none
+   &bt BT_CLR &none   &none    &none    &none     &none                   &none    &kp ASTRK &kp N1    &kp N2     &kp N3    &kp EQUAL &none
+   &none     &none    &none    &tog 3   &none     &none                   &none    &kp BSPC  &kp N0    &kp N0     &KP DOT   &kp RET   &none
+                        >;
+  //Encoder Bindings
+			sensor-bindings = <&inc_dec_kp RIGHT LEFT>;
+                };
+	};
+};
